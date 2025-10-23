@@ -55,18 +55,42 @@ export const useCamera = (
         await videoRef.current.play();
         console.log("Video playing");
 
-        // Wait for video to be ready
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        // Wait longer for video to be ready and camera to adjust
+        await new Promise((resolve) => setTimeout(resolve, 2500));
         console.log("Video ready, performing detection...");
 
-        // Perform detection
+        // Perform detection with more lenient options
+        // Lower scoreThreshold = more sensitive (default is 0.5)
+        // Lower inputSize = faster but less accurate
+        const options = new faceapi.TinyFaceDetectorOptions({
+          inputSize: 416, // Higher = better detection (default 416)
+          scoreThreshold: 0.3, // Lower = more sensitive (default 0.5)
+        });
+
         const detection = await faceapi.detectSingleFace(
           videoRef.current,
-          new faceapi.TinyFaceDetectorOptions()
+          options
         );
 
         const faceDetected = !!detection;
-        console.log("Face detection result:", faceDetected);
+        console.log(
+          "Face detection result:",
+          faceDetected,
+          detection ? `(confidence: ${detection.score.toFixed(2)})` : ""
+        );
+
+        // If face detected, log confidence score
+        if (detection) {
+          console.log(
+            "✅ Face detected with confidence:",
+            detection.score.toFixed(2)
+          );
+        } else {
+          console.log(
+            "❌ No face detected - try better lighting or move closer"
+          );
+        }
+
         onCheckComplete(faceDetected);
 
         // Clear video source

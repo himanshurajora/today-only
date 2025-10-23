@@ -32,38 +32,59 @@ export const playBeep = (
 };
 
 export const playLowFrequencyBeep = (duration: number = 30): void => {
-  // Stop any existing beep first
-  stopLowFrequencyBeep();
+  try {
+    console.log(
+      "🔊 Attempting to play low frequency beep for",
+      duration,
+      "seconds"
+    );
 
-  const ctx = getAudioContext();
-  const oscillator = ctx.createOscillator();
-  const gainNode = ctx.createGain();
+    // Stop any existing beep first
+    stopLowFrequencyBeep();
 
-  oscillator.connect(gainNode);
-  gainNode.connect(ctx.destination);
+    const ctx = getAudioContext();
 
-  oscillator.frequency.value = 200; // Low frequency
-  oscillator.type = "sawtooth"; // More annoying sound
+    // Resume context if suspended (required by some browsers)
+    if (ctx.state === "suspended") {
+      console.log("Audio context suspended, resuming...");
+      ctx.resume();
+    }
 
-  gainNode.gain.setValueAtTime(0.5, ctx.currentTime);
+    const oscillator = ctx.createOscillator();
+    const gainNode = ctx.createGain();
 
-  oscillator.start(ctx.currentTime);
-  oscillator.stop(ctx.currentTime + duration);
+    oscillator.connect(gainNode);
+    gainNode.connect(ctx.destination);
 
-  // Store references so we can stop it
-  currentOscillator = oscillator;
-  currentGainNode = gainNode;
+    oscillator.frequency.value = 200; // Low frequency
+    oscillator.type = "sawtooth"; // More annoying sound
 
-  // Clear references after duration
-  setTimeout(() => {
-    currentOscillator = null;
-    currentGainNode = null;
-  }, duration * 1000);
+    gainNode.gain.setValueAtTime(0.5, ctx.currentTime);
+
+    oscillator.start(ctx.currentTime);
+    oscillator.stop(ctx.currentTime + duration);
+
+    console.log("🔊 Low frequency beep started");
+
+    // Store references so we can stop it
+    currentOscillator = oscillator;
+    currentGainNode = gainNode;
+
+    // Clear references after duration
+    setTimeout(() => {
+      currentOscillator = null;
+      currentGainNode = null;
+      console.log("🔊 Low frequency beep ended naturally");
+    }, duration * 1000);
+  } catch (error) {
+    console.error("❌ Error playing low frequency beep:", error);
+  }
 };
 
 export const stopLowFrequencyBeep = (): void => {
   if (currentOscillator && currentGainNode) {
     try {
+      console.log("🔇 Stopping low frequency beep");
       const ctx = getAudioContext();
       // Fade out quickly
       currentGainNode.gain.setValueAtTime(
@@ -85,16 +106,31 @@ export const stopLowFrequencyBeep = (): void => {
           }
           currentOscillator = null;
           currentGainNode = null;
+          console.log("🔇 Low frequency beep stopped");
         }
       }, 100);
     } catch (error) {
-      console.error("Error stopping beep:", error);
+      console.error("❌ Error stopping beep:", error);
     }
+  } else {
+    console.log("ℹ️ No active beep to stop");
   }
 };
 
 export const playAlertBeep = (): void => {
-  playBeep(800, 0.1);
-  setTimeout(() => playBeep(1000, 0.1), 150);
-  setTimeout(() => playBeep(1200, 0.2), 300);
+  try {
+    console.log("🔔 Playing alert beep (triple beep)");
+    const ctx = getAudioContext();
+
+    // Resume context if suspended
+    if (ctx.state === "suspended") {
+      ctx.resume();
+    }
+
+    playBeep(800, 0.1);
+    setTimeout(() => playBeep(1000, 0.1), 150);
+    setTimeout(() => playBeep(1200, 0.2), 300);
+  } catch (error) {
+    console.error("❌ Error playing alert beep:", error);
+  }
 };

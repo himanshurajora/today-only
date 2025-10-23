@@ -26,14 +26,18 @@ export const FocusTimer = () => {
   const faceCheckIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const { videoRef, isChecking } = useCamera(shouldCheckFace, (detected) => {
+    console.log('📸 Face check callback - detected:', detected);
     setShouldCheckFace(false);
 
     if (!detected) {
+      console.log('⚠️ Face NOT detected - triggering alert and beep');
       setShowAlert(true);
       playLowFrequencyBeep(30);
       if (currentSession) {
         logSessionActivity('face_not_detected', 'Face not detected during check');
       }
+    } else {
+      console.log('✅ Face detected - all good!');
     }
 
     // Reset timer for next check
@@ -335,8 +339,9 @@ export const FocusTimer = () => {
 
           <div className="mt-6 text-white/60 text-sm space-y-2">
             <p>• Beep alert every 15 minutes</p>
-            <p>• Camera monitors your presence</p>
+            <p>• Face check every 1 minute (high sensitivity)</p>
             <p>• Alert if you're away</p>
+            <p className="text-white/40 text-xs mt-2">💡 Tip: Good lighting improves detection</p>
           </div>
         </div>
 

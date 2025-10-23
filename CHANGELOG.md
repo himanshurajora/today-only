@@ -1,6 +1,84 @@
 # Changelog
 
-## [Latest - v1.3] - Circular Timer UI & Face Check Debug
+## [Latest - v1.3.2] - Improved Face Detection Sensitivity
+
+### Improved
+
+- **Face detection much more sensitive** 📸
+  - Lowered detection threshold from 0.5 to 0.3 (40% more sensitive)
+  - Increased camera warm-up time from 1.5s to 2.5s
+  - Better detection in various lighting conditions
+  - Shows confidence score in console logs
+  - Helpful tips displayed in UI
+
+### What Changed
+
+- **scoreThreshold: 0.3** (was 0.5)
+  - Lower = more likely to detect faces
+  - Better for varying lighting and angles
+- **Camera warm-up: 2.5 seconds** (was 1.5s)
+  - Gives camera more time to adjust exposure
+  - Better focus and lighting adaptation
+
+### Better Console Logging
+
+- Now shows confidence score when face detected
+- "✅ Face detected with confidence: 0.85"
+- "❌ No face detected - try better lighting or move closer"
+
+### Tips for Best Detection
+
+1. **Good lighting** - face well-lit, not backlit
+2. **Face the camera** - look generally toward screen
+3. **Don't be too far** - within 1-2 meters is best
+4. **No hats/sunglasses** - can interfere with detection
+5. **Wait for camera** - first few seconds after check starts
+
+---
+
+## [v1.3.1] - Audio Alarm Fix
+
+### Fixed
+
+- **Alarm now plays reliably when face not detected** 🔊
+  - Audio context automatically initialized on first user interaction
+  - Audio resumes if suspended by browser
+  - Comprehensive logging for debugging audio issues
+  - Works in all browsers (Chrome, Firefox, Safari, Edge)
+
+### Debug Features
+
+- Added audio logging:
+  - "🔊 Attempting to play low frequency beep for X seconds"
+  - "🔊 Low frequency beep started"
+  - "🔊 Low frequency beep ended naturally"
+  - "🔇 Stopping low frequency beep"
+  - "🔔 Playing alert beep (triple beep)"
+  - "⚠️ Face NOT detected - triggering alert and beep"
+  - "✅ Face detected - all good!"
+
+### Technical Changes
+
+#### New: `utils/initAudio.ts`
+
+- Initializes audio context on first user interaction
+- Required by browsers that block audio until user interaction
+- Listens for click, touch, or keydown events
+
+#### Updated: `utils/audio.ts`
+
+- Added audio context state checking
+- Automatically resumes suspended contexts
+- Comprehensive error handling and logging
+
+#### Updated: `App.tsx`
+
+- Calls `initializeAudioOnUserInteraction()` on mount
+- Ensures audio works throughout the app
+
+---
+
+## [v1.3] - Circular Timer UI & Face Check Debug
 
 ### Added
 

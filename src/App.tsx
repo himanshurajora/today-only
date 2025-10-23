@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { SessionProvider } from './context/SessionContext';
 import { LoginForm } from './components/auth/LoginForm';
 import { MainLayout } from './components/layout/MainLayout';
 import { Dashboard } from './components/dashboard/Dashboard';
+import { initializeAudioOnUserInteraction } from './utils/initAudio';
 
 function AppContent() {
   const { user, loading } = useAuth();
@@ -32,6 +34,11 @@ function AppContent() {
 }
 
 function App() {
+  useEffect(() => {
+    // Initialize audio on first user interaction
+    initializeAudioOnUserInteraction();
+  }, []);
+
   return (
     <AuthProvider>
       <AppContent />
