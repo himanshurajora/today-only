@@ -15,7 +15,7 @@ export const SessionControls = () => {
 
     if (!currentSession) {
         return (
-            <div className="bg-gradient-to-br from-indigo-900/40 to-purple-900/40 backdrop-blur-lg p-10 rounded-3xl border border-white/20 text-center">
+            <div className="bg-gray-900/40 backdrop-blur-lg p-10 rounded-3xl border border-white/10 text-center">
                 <div className="text-7xl mb-6">🚀</div>
                 <h2 className="text-4xl font-bold text-white mb-4">Ready to Start?</h2>
                 <p className="text-white/80 text-xl mb-8">
@@ -23,7 +23,7 @@ export const SessionControls = () => {
                 </p>
                 <button
                     onClick={startNewSession}
-                    className="bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold py-5 px-12 rounded-full hover:from-pink-600 hover:to-purple-700 transition transform hover:scale-110 text-2xl shadow-2xl"
+                    className="bg-gradient-to-r from-gray-700 to-gray-900 text-white font-bold py-5 px-12 rounded-full hover:from-gray-600 hover:to-gray-800 transition transform hover:scale-110 text-2xl shadow-2xl border border-white/10"
                 >
                     Start Work Session
                 </button>
@@ -34,7 +34,7 @@ export const SessionControls = () => {
     const sessionDuration = Math.floor((new Date().getTime() - currentSession.startTime.getTime()) / 1000 / 60);
 
     return (
-        <div className="bg-gradient-to-br from-green-900/40 to-blue-900/40 backdrop-blur-lg p-6 rounded-2xl border border-white/20">
+        <div className="bg-gray-900/40 backdrop-blur-lg p-6 rounded-2xl border border-white/10">
             <div className="flex items-center justify-between">
                 <div>
                     <div className="flex items-center gap-3">

@@ -11,7 +11,7 @@ function AppContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-purple-950 to-pink-950 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-950 via-black to-gray-900 flex items-center justify-center">
         <div className="text-center">
           <div className="text-7xl mb-4 animate-bounce">🕒</div>
           <p className="text-white text-2xl">Loading...</p>

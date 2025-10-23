@@ -38,7 +38,7 @@ export const TaskForm = ({ onClose }: TaskFormProps) => {
 
     return (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-            <div className="bg-gradient-to-br from-purple-900 to-indigo-900 p-8 rounded-3xl shadow-2xl w-full max-w-2xl border border-white/20">
+            <div className="bg-gray-900/95 backdrop-blur-lg p-8 rounded-3xl shadow-2xl w-full max-w-2xl border border-white/10">
                 <h2 className="text-3xl font-bold text-white mb-6">✨ Create New Task</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-5">
@@ -98,7 +98,7 @@ export const TaskForm = ({ onClose }: TaskFormProps) => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold py-3 px-6 rounded-xl hover:from-pink-600 hover:to-purple-700 transition transform hover:scale-105 disabled:opacity-50 text-lg"
+                            className="flex-1 bg-gradient-to-r from-gray-700 to-gray-900 text-white font-bold py-3 px-6 rounded-xl hover:from-gray-600 hover:to-gray-800 transition transform hover:scale-105 disabled:opacity-50 text-lg border border-white/10"
                         >
                             {loading ? 'Creating...' : 'Create Task'}
                         </button>

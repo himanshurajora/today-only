@@ -7,7 +7,7 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
     return (
-        <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-purple-950 to-pink-950">
+        <div className="min-h-screen bg-gradient-to-br from-gray-950 via-black to-gray-900">
             <Header />
             <main className="max-w-7xl mx-auto px-6 py-8">
                 {children}

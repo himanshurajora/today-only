@@ -36,15 +36,15 @@ export const TaskItem = ({ task }: TaskItemProps) => {
 
     return (
         <div
-            className={`bg-white/10 backdrop-blur-lg p-5 rounded-2xl border border-white/20 transition-all ${task.completed ? 'opacity-60' : ''
+            className={`bg-white/5 backdrop-blur-lg p-5 rounded-2xl border border-white/10 transition-all ${task.completed ? 'opacity-60' : ''
                 } ${isDeleting ? 'opacity-40' : ''}`}
         >
             <div className="flex items-start gap-4">
                 <button
                     onClick={handleToggleComplete}
                     className={`flex-shrink-0 w-7 h-7 rounded-lg border-2 transition-all transform hover:scale-110 ${task.completed
-                            ? 'bg-green-500 border-green-400'
-                            : 'border-white/40 hover:border-white/60'
+                        ? 'bg-green-500 border-green-400'
+                        : 'border-white/40 hover:border-white/60'
                         }`}
                     disabled={isDeleting}
                 >

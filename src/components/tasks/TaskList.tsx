@@ -25,7 +25,7 @@ export const TaskList = () => {
                 </div>
                 <button
                     onClick={() => setShowTaskForm(true)}
-                    className="bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold py-3 px-8 rounded-full hover:from-pink-600 hover:to-purple-700 transition transform hover:scale-105 text-lg shadow-lg"
+                    className="bg-gradient-to-r from-gray-700 to-gray-900 text-white font-bold py-3 px-8 rounded-full hover:from-gray-600 hover:to-gray-800 transition transform hover:scale-105 text-lg shadow-lg border border-white/10"
                 >
                     + Add Task
                 </button>

@@ -232,7 +232,7 @@ export const FocusTimer = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-white/10 backdrop-blur-lg p-8 rounded-3xl border border-white/20">
+      <div className="bg-white/5 backdrop-blur-lg p-8 rounded-3xl border border-white/10">
         <div className="text-center">
           <div className="text-6xl mb-4 animate-pulse">⏳</div>
           <p className="text-white/60">Loading focus mode...</p>
@@ -245,7 +245,7 @@ export const FocusTimer = () => {
     const breakProgress = breakTimeRemaining / (breakTimeRemaining > 0 ? (breakTimeRemaining + 1) : 1);
 
     return (
-      <div className="bg-gradient-to-br from-green-900/40 to-blue-900/40 backdrop-blur-lg p-8 rounded-3xl border border-white/20">
+      <div className="bg-gray-900/40 backdrop-blur-lg p-8 rounded-3xl border border-white/10">
         <div className="text-center">
           <div className="text-6xl mb-4">☕</div>
           <h2 className="text-4xl font-bold text-white mb-6">Break Time!</h2>
@@ -276,13 +276,13 @@ export const FocusTimer = () => {
                 />
                 <defs>
                   <linearGradient id="gradientBreak" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#10b981" />
-                    <stop offset="100%" stopColor="#3b82f6" />
+                    <stop offset="0%" stopColor="#6b7280" />
+                    <stop offset="100%" stopColor="#374151" />
                   </linearGradient>
                 </defs>
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-5xl font-bold text-green-400 font-mono">
+                <div className="text-5xl font-bold text-gray-300 font-mono">
                   {formatTime(breakTimeRemaining)}
                 </div>
               </div>
@@ -291,7 +291,7 @@ export const FocusTimer = () => {
           <p className="text-white/80 text-xl mb-6">Relax and recharge</p>
           <button
             onClick={endBreak}
-            className="bg-gradient-to-r from-green-500 to-blue-600 text-white font-bold py-3 px-8 rounded-full hover:from-green-600 hover:to-blue-700 transition transform hover:scale-105 text-lg"
+            className="bg-gradient-to-r from-gray-700 to-gray-900 text-white font-bold py-3 px-8 rounded-full hover:from-gray-600 hover:to-gray-800 transition transform hover:scale-105 text-lg border border-white/10"
           >
             End Break Early
           </button>
@@ -302,7 +302,7 @@ export const FocusTimer = () => {
 
   if (!isActive) {
     return (
-      <div className="bg-white/10 backdrop-blur-lg p-8 rounded-3xl border border-white/20">
+      <div className="bg-white/5 backdrop-blur-lg p-8 rounded-3xl border border-white/10">
         <div className="text-center">
           <div className="text-6xl mb-4">🎯</div>
           <h2 className="text-4xl font-bold text-white mb-6">Focus Mode</h2>
@@ -324,14 +324,14 @@ export const FocusTimer = () => {
           <div className="space-y-4">
             <button
               onClick={startFocus}
-              className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full hover:from-pink-600 hover:to-purple-700 transition transform hover:scale-105 text-xl shadow-lg"
+              className="w-full bg-gradient-to-r from-gray-700 to-gray-900 text-white font-bold py-4 px-8 rounded-full hover:from-gray-600 hover:to-gray-800 transition transform hover:scale-105 text-xl shadow-lg border border-white/10"
             >
               Start Focus Session
             </button>
 
             <button
               onClick={() => setShowBreakScheduler(true)}
-              className="w-full bg-gradient-to-r from-green-500 to-blue-600 text-white font-bold py-4 px-8 rounded-full hover:from-green-600 hover:to-blue-700 transition transform hover:scale-105 text-xl shadow-lg"
+              className="w-full bg-gradient-to-r from-gray-600 to-gray-800 text-white font-bold py-4 px-8 rounded-full hover:from-gray-500 hover:to-gray-700 transition transform hover:scale-105 text-xl shadow-lg border border-white/10"
             >
               Schedule Break
             </button>
@@ -357,7 +357,7 @@ export const FocusTimer = () => {
 
   return (
     <>
-      <div className="bg-gradient-to-br from-purple-900/40 to-pink-900/40 backdrop-blur-lg p-8 rounded-3xl border border-white/20">
+      <div className="bg-gray-900/40 backdrop-blur-lg p-8 rounded-3xl border border-white/10">
         <div className="text-center">
           <div className="text-6xl mb-4">⏱️</div>
           <h2 className="text-3xl font-bold text-white mb-6">Focus Active</h2>
@@ -390,8 +390,8 @@ export const FocusTimer = () => {
                 />
                 <defs>
                   <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#ec4899" />
-                    <stop offset="100%" stopColor="#8b5cf6" />
+                    <stop offset="0%" stopColor="#6b7280" />
+                    <stop offset="100%" stopColor="#374151" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -406,7 +406,7 @@ export const FocusTimer = () => {
 
           <button
             onClick={stopFocus}
-            className="bg-gradient-to-r from-red-500 to-orange-600 text-white font-bold py-3 px-8 rounded-full hover:from-red-600 hover:to-orange-700 transition transform hover:scale-105 text-lg"
+            className="bg-gradient-to-r from-gray-800 to-black text-white font-bold py-3 px-8 rounded-full hover:from-gray-700 hover:to-gray-900 transition transform hover:scale-105 text-lg border border-white/10"
           >
             End Focus
           </button>

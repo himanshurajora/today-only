@@ -18,7 +18,7 @@ export const BreakScheduler = ({ onSchedule, onClose }: BreakSchedulerProps) => 
 
     return (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-            <div className="bg-gradient-to-br from-green-900 to-blue-900 p-8 rounded-3xl shadow-2xl w-full max-w-lg border border-white/20">
+            <div className="bg-gray-900/95 backdrop-blur-lg p-8 rounded-3xl shadow-2xl w-full max-w-lg border border-white/10">
                 <div className="text-center">
                     <div className="text-6xl mb-4">☕</div>
                     <h2 className="text-3xl font-bold text-white mb-6">Schedule Break</h2>
@@ -34,8 +34,8 @@ export const BreakScheduler = ({ onSchedule, onClose }: BreakSchedulerProps) => 
                                     key={preset}
                                     onClick={() => setDuration(preset)}
                                     className={`py-3 px-4 rounded-xl font-bold transition transform hover:scale-105 ${duration === preset
-                                            ? 'bg-white text-green-900'
-                                            : 'bg-white/20 text-white hover:bg-white/30'
+                                        ? 'bg-white text-green-900'
+                                        : 'bg-white/20 text-white hover:bg-white/30'
                                         }`}
                                 >
                                     {preset}
@@ -56,7 +56,7 @@ export const BreakScheduler = ({ onSchedule, onClose }: BreakSchedulerProps) => 
                     <div className="flex gap-4">
                         <button
                             onClick={handleSchedule}
-                            className="flex-1 bg-gradient-to-r from-green-500 to-blue-600 text-white font-bold py-3 px-6 rounded-full hover:from-green-600 hover:to-blue-700 transition transform hover:scale-105 text-lg"
+                            className="flex-1 bg-gradient-to-r from-gray-700 to-gray-900 text-white font-bold py-3 px-6 rounded-full hover:from-gray-600 hover:to-gray-800 transition transform hover:scale-105 text-lg border border-white/10"
                         >
                             Start Break
                         </button>

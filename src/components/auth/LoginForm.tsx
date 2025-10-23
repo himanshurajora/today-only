@@ -57,8 +57,8 @@ export const LoginForm = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-            <div className="bg-white/10 backdrop-blur-lg p-8 rounded-3xl shadow-2xl w-full max-w-md border border-white/20">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-950 via-black to-gray-900">
+            <div className="bg-white/5 backdrop-blur-lg p-8 rounded-3xl shadow-2xl w-full max-w-md border border-white/10">
                 <h1 className="text-5xl font-bold text-white mb-2 text-center">
                     🕒 Today Only
                 </h1>
@@ -132,7 +132,7 @@ export const LoginForm = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold py-4 px-6 rounded-xl hover:from-pink-600 hover:to-purple-700 transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed text-xl shadow-lg"
+                        className="w-full bg-gradient-to-r from-gray-700 to-gray-900 text-white font-bold py-4 px-6 rounded-xl hover:from-gray-600 hover:to-gray-800 transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed text-xl shadow-lg border border-white/10"
                     >
                         {loading ? 'Please wait...' : isLogin ? 'Sign In' : 'Sign Up'}
                     </button>
