@@ -52,42 +52,90 @@ export const useCamera = (
 
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
+
+        // Set video dimensions for better detection
+        videoRef.current.width = 640;
+        videoRef.current.height = 480;
+
         await videoRef.current.play();
         console.log("Video playing");
 
-        // Wait longer for video to be ready and camera to adjust
-        await new Promise((resolve) => setTimeout(resolve, 2500));
-        console.log("Video ready, performing detection...");
+        // Wait for video to be ready (check readyState)
+        let attempts = 0;
+        while (videoRef.current.readyState < 2 && attempts < 50) {
+          await new Promise((resolve) => setTimeout(resolve, 100));
+          attempts++;
+        }
+        console.log("Video ready state:", videoRef.current.readyState);
 
-        // Perform detection with more lenient options
-        // Lower scoreThreshold = more sensitive (default is 0.5)
-        // Lower inputSize = faster but less accurate
+        // Additional time for camera to adjust exposure
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        console.log("Camera warmed up, performing detection...");
+
+        // Try detection multiple times to improve reliability
         const options = new faceapi.TinyFaceDetectorOptions({
-          inputSize: 416, // Higher = better detection (default 416)
-          scoreThreshold: 0.3, // Lower = more sensitive (default 0.5)
+          inputSize: 416,
+          scoreThreshold: 0.1, // Very sensitive
         });
 
-        const detection = await faceapi.detectSingleFace(
-          videoRef.current,
-          options
-        );
+        let bestDetection = null;
+        let highestConfidence = 0;
 
-        const faceDetected = !!detection;
+        // Try 3 times over 1.5 seconds
+        for (let i = 0; i < 3; i++) {
+          try {
+            const detections = await faceapi.detectAllFaces(
+              videoRef.current,
+              options
+            );
+
+            if (detections && detections.length > 0) {
+              // Get detection with highest confidence
+              const best = detections.reduce((prev, current) =>
+                current.score > prev.score ? current : prev
+              );
+
+              if (best.score > highestConfidence) {
+                bestDetection = best;
+                highestConfidence = best.score;
+              }
+
+              console.log(
+                `Attempt ${i + 1}: Found ${
+                  detections.length
+                } face(s), best confidence: ${best.score.toFixed(3)}`
+              );
+            } else {
+              console.log(`Attempt ${i + 1}: No faces detected`);
+            }
+
+            // Wait a bit between attempts
+            if (i < 2) {
+              await new Promise((resolve) => setTimeout(resolve, 500));
+            }
+          } catch (detectError) {
+            console.error(`Detection attempt ${i + 1} failed:`, detectError);
+          }
+        }
+
+        const faceDetected = !!bestDetection;
         console.log(
-          "Face detection result:",
+          "Final detection result:",
           faceDetected,
-          detection ? `(confidence: ${detection.score.toFixed(2)})` : ""
+          bestDetection
+            ? `(best confidence: ${bestDetection.score.toFixed(3)})`
+            : ""
         );
 
         // If face detected, log confidence score
-        if (detection) {
+        if (bestDetection) {
           console.log(
             "✅ Face detected with confidence:",
-            detection.score.toFixed(2)
+            bestDetection.score.toFixed(3)
           );
         } else {
           console.log(
-            "❌ No face detected - try better lighting or move closer"
+            "❌ No face detected in any attempt - ensure good lighting and face camera"
           );
         }
 

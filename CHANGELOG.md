@@ -1,6 +1,31 @@
 # Changelog
 
-## [Latest - v1.3.2] - Improved Face Detection Sensitivity
+## [Latest - v1.4] - Dark Theme + Balanced Face Detection
+
+### Changed
+
+- **Theme changed to dark black glassy** 🖤
+
+  - Removed purple/pink gradients
+  - Deep black and gray color scheme
+  - Subtle borders and glass effects
+  - Professional dark aesthetic
+
+- **Face detection sensitivity reduced** 📸
+  - Score threshold back to 0.5 (default)
+  - Less false positives
+  - Requires clearer face detection
+  - Better for well-lit environments
+
+### What This Means
+
+- **Less sensitive detection** = Fewer false alarms when lighting isn't perfect
+- **More accurate detection** = Only triggers when confident face is detected
+- **Requires better setup** = Good lighting and clear face view important
+
+---
+
+## [v1.3.2] - Improved Face Detection Sensitivity
 
 ### Improved
 

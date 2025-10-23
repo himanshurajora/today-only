@@ -339,7 +339,7 @@ export const FocusTimer = () => {
 
           <div className="mt-6 text-white/60 text-sm space-y-2">
             <p>• Beep alert every 15 minutes</p>
-            <p>• Face check every 1 minute (high sensitivity)</p>
+            <p>• Face check every 1 minute (balanced sensitivity)</p>
             <p>• Alert if you're away</p>
             <p className="text-white/40 text-xs mt-2">💡 Tip: Good lighting improves detection</p>
           </div>
